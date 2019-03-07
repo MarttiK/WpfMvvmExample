@@ -1,0 +1,41 @@
+﻿<Window x:Class="SimpleMvvmExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleMvvmExample"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="357.584">
+    <StackPanel>
+        <ComboBox ItemsSource="{Binding Path=Customers, Mode=TwoWay}" Margin="10,10,10,5"
+                  SelectedItem="{Binding SelectedUser}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding LastName}" Margin="0,0,4,0"/>
+                        <TextBlock Text="{Binding FirstName}" Margin="0,0,4,0"/>
+                        <TextBlock Text="{Binding CustomerId}" Margin="0,0,10,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button Content="Create new" Margin="10,5,10,10" Command="{Binding CreateNewCommand}"/>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="First Name:" MinWidth="80"/>
+            <TextBox Text="{Binding Firstname, Mode=TwoWay}" MinWidth="256" HorizontalAlignment="Stretch"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Last Name:" MinWidth="80"/>
+            <TextBox Text="{Binding Lastname, Mode=TwoWay}" Width="256"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="CustomerId:" MinWidth="80"/>
+            <TextBox IsEnabled="false" Text="{Binding CustomerId, Mode=TwoWay}" Width="256"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="D.O.B:" MinWidth="80"/>
+            <DatePicker SelectedDate="{Binding Birthday, Mode=TwoWay}" />
+        </StackPanel>
+        <Button Content="Save User" Margin="10,10,10,10" Command="{Binding StoreUserCommand}"/>
+    </StackPanel>
+</Window>
